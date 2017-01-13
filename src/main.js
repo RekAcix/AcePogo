@@ -20,8 +20,10 @@ var game = new Phaser.Game(900,600,Phaser.AUTO,'',{preload : preload, create: cr
     game.world.width = 900;
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    this.points_p1 = 0
-    this.points_p2 = 0
+    this.points_p1 = 0;
+    this.points_p2 = 0;
+    this.counter = 1;
+    this.counter = 1;
     game.stage.backgroundColor = "#fff";
 
 
@@ -45,7 +47,8 @@ var game = new Phaser.Game(900,600,Phaser.AUTO,'',{preload : preload, create: cr
 
 
 
-    score = game.add.text(game.world.centerX,game.world.centerY,'lmao', 32);
+    score = game.add.text(game.world.centerX - 18,game.world.centerY - 100,'lmao', 32);
+    counter = game.add.text(game.world.centerX + 3, game.world.centerY - 50, 's', 32);
 
 
 
@@ -89,6 +92,7 @@ var game = new Phaser.Game(900,600,Phaser.AUTO,'',{preload : preload, create: cr
 
     //score
     score.text = this.points_p1 + ' : ' + this.points_p2;
+    counter.text = this.counter
 
 
   }
@@ -136,6 +140,8 @@ var game = new Phaser.Game(900,600,Phaser.AUTO,'',{preload : preload, create: cr
     else {
       ball.body.velocity.y = -Math.random() * 750
     }
+    ball.body.velocity.x = ball.body.velocity.x + 10
+    this.counter++;
   }
 
   function bounce2() {
@@ -146,6 +152,8 @@ var game = new Phaser.Game(900,600,Phaser.AUTO,'',{preload : preload, create: cr
     else {
       ball.body.velocity.y = -Math.random() * 500
     }
+    this.counter++;
+    ball.body.velocity.x = ball.body.velocity.x - 10
   }
 
 //Bouncing from walls results:
@@ -164,7 +172,7 @@ var game = new Phaser.Game(900,600,Phaser.AUTO,'',{preload : preload, create: cr
     ball.body.velocity.x = -400;
     ball.body.velocity.y = 0;
 
-    counter = 0;
+    this.counter = 1;
     this.points_p1++;
   }
   function point2() {
@@ -174,6 +182,6 @@ var game = new Phaser.Game(900,600,Phaser.AUTO,'',{preload : preload, create: cr
     ball.body.velocity.y = 0;
 
 
-    counter = 0;
+    this.counter = 1;
     this.points_p2++;
   }
