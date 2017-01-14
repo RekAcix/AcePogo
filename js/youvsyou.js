@@ -132,11 +132,10 @@ var game = new Phaser.Game(900,600,Phaser.AUTO,'',{preload : preload, create: cr
       }
   }
 
-
   function control_paddleB(paddle,y){
-    paddle.y = ball.y
-    }
-
+    paddle.y = y;
+    paddle.x = game.world.width - 32;
+  }
 
 //Bouncing from paddles results:
   function bounce() {
