@@ -9,6 +9,7 @@ var game = new Phaser.Game(900,600,Phaser.AUTO,'',{preload : preload, create: cr
     game.load.image('wall', 'assets/wall.png');
     game.load.image('finish1', 'assets/finish1.png');
     game.load.image('finish2', 'assets/finish2.png');
+    game.load.image('youvsyou', 'assets/youvsyou.png');
 
     var paddleA;
     var paddleB;
@@ -69,6 +70,11 @@ var game = new Phaser.Game(900,600,Phaser.AUTO,'',{preload : preload, create: cr
       ball.body.velocity.y = 100;
       ball.body.CollideWorldBounds = true;
       ball.body.bounce.set(1);
+
+      //making menu
+      cursors = game.input.keyboard.createCursorKeys();
+      escapekey = this.input.keyboard.addKey(Phaser.Keyboard.ESCAPE);
+      escapekey.onDown.add(togglemenu, this);
 
   }
   function update(){
@@ -185,3 +191,13 @@ var game = new Phaser.Game(900,600,Phaser.AUTO,'',{preload : preload, create: cr
     this.counter = 1;
     this.points_p2++;
   }
+
+  function togglemenu() {
+    if (game.physics.arcade.isPaused = false) {
+      game.physics.arcade.isPaused = true;
+      youvsyou = game.add.sprite(game.world.centerX - 300, game.world.centerY, 'youvsyou');
+    }
+    else {
+      game.physics.arcade.isPaused = false;
+    }
+    }
